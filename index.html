@@ -1,0 +1,133 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .header{
+                text-align: center;
+                background:linear-gradient(45deg,#0074f8,#af02ff,#5900ff);
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 20px;
+                animation: hueRotation 20s ease infinite;
+            }
+            body{
+                margin: 0;
+                background:linear-gradient(45deg,#0074f8,#af02ff,#5900ff);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                animation: hueRotation 20s ease infinite;
+
+            }
+            .footer{
+                text-align: center;
+                background:linear-gradient(45deg,#0074f8,#af02ff,#5900ff);
+                padding: 10px;
+                color: white;
+                animation: hueRotation 20s ease infinite;
+
+            }
+            .content{
+                padding: 12px;
+                flex:1;
+
+            }
+            .sidenav a{
+                text-decoration:none;
+                color: white;
+                font-size: 25px;
+                display: block;
+                padding: 8px 8px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                transition: transform 0.5s ease;
+                text-align: center;
+                
+                
+            }
+            .sidenav{
+                background:linear-gradient(45deg,#0074f8,#af02ff,#5900ff);
+                height:91vh;
+                width:0;
+                position: fixed;
+                padding-top: 60px;
+                z-index:1;
+                overflow-x: hidden;
+                transition: 0.5s;
+                animation: hueRotation 20s ease infinite;
+            }
+            .sidenav a:hover {
+            background-color: #875bdf;
+            color: white;
+            transform:scale(1.5);
+        }
+        @keyframes hueRotation {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>my website</h1>
+            <span style="font-size: 25px;cursor: pointer;" class="toggle-btn" onclick="toggleNav()">&#9776;</span>
+            
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="#" onclick="showContent('home'); closeNav();">home</a>
+            <a href="#" onclick="showContent('gmm'); closeNav();">gmm</a>
+            
+        </div>
+        <div class="content">
+            <div id="home" style="display: none;">
+                <h2>HOME</h2>
+                <p>this is <b>home</b> section</p>
+
+            </div>
+            <div id="gmm" style="display: none;">
+                <h2>GMM</h2>
+                <p>this is <b>GMM</b> section</p>
+
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy;copyright 2025-2026 <br><br>0792303675</p>
+            <a  style="text-decoration: none;color: rgb(255, 0, 242);cursor: pointer;"><b>this will take you to mpesa</b></a>
+        </div>
+        <script>
+            function toggleNav() {
+            var sidenav = document.getElementById("mySidenav");
+            if (sidenav.style.width === "200px") {
+                sidenav.style.width = "0";
+            } else {
+                sidenav.style.width = "200px";
+            }
+        }
+        function showContent(section) {
+            var contents = document.getElementsByClassName("content")[0].children;
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = "none";
+            }
+            document.getElementById(section).style.display = "block";
+            closeNav();
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        document.addEventListener('click', function(event) {
+            var sidenav = document.getElementById("mySidenav");
+            var toggleButton = document.querySelector(".toggle-btn");
+            if (event.target !== sidenav && event.target !== toggleButton && sidenav.style.width === "200px") {
+                closeNav();
+            }
+        });
+        </script>
+    </body>
+    </html>
